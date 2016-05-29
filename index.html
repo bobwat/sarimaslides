@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ARIMA Seasonality Demonstrator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="ARIMA Seasonality Demonstrator">
+  <meta name="author" content="Bob Waters">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>ARIMA Seasonality Demonstrator</h1>
+    <h2>Slidify code https://github.com/bobwat/DDP-SARIMA</h2>
+    <p>Bob Waters<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <p>## Shiny App to Demonstrate Seasonality on ARIMA Models</p>
+
+<ul>
+<li>ARIMA Autoregressive Integrated Moving Average</li>
+<li>Describe Time Series Data and Forecast Future Values
+Seasonal ARIMA Model
+\[(p,d,q)\times(P,D,Q)_s\]</li>
+<li>\(p\): Autoregressive process order</li>
+<li>\(d\): Differencing term</li>
+<li>\(q\): Moving average process order</li>
+<li>\(P\): Seasonal autoregressive order</li>
+<li>\(D\): Seasonal differencing</li>
+<li>\(Q\): Seasonal moving average order</li>
+<li>\(s\): Seasonality</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Mauna Loa Atmospheric CO2 Concentration</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Monthly Data, seasonality = 12</li>
+<li>In base R as co2</li>
+<li>Last 120 entries of the time series</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>auto.arima() Function</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The R forecast package by R.Hyndman</li>
+<li>Specify the seasonality</li>
+<li>auto.arima varies the orders of the function, and calculates models</li>
+<li>Model with the lowest AIC is chosen as the best of the models calculated</li>
+</ul>
+
+<pre><code>## Series: x 
+## ARIMA(2,0,0)(2,1,0)[12] with drift         
+## 
+## Coefficients:
+##          ar1     ar2     sar1     sar2   drift
+##       0.6621  0.2285  -0.4783  -0.2787  0.1234
+## s.e.  0.0953  0.0967   0.1043   0.1098  0.0134
+## 
+## sigma^2 estimated as 0.1234:  log likelihood=-33.84
+## AIC=79.67   AICc=80.5   BIC=95.82
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Residual Autocorrelation and Partial Autocorrelation</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Used to determine the resulting noise is independent and identically distributed</li>
+<li>The noise within the 95% CI is most likely to be iid</li>
+</ul>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"></p>
+
+<ul>
+<li>User can adjust seasonality and determine (or demonstrate) the seasonality is 12</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Mauna Loa Atmospheric CO2 Concentration'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='auto.arima() Function'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Residual Autocorrelation and Partial Autocorrelation'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
